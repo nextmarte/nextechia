@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
-import { CheckCircle2, Award, BookOpen, Cpu, Globe, Scale } from "lucide-react";
+import { CheckCircle2, Award, BookOpen, Cpu, Globe, Scale, Linkedin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Marcus Ramalho | Fundador da Nextech",
@@ -32,6 +32,18 @@ export default function FundadorPage() {
                   <Globe className="h-4 w-4 text-primary" />
                   Data Scientist
                 </div>
+              </div>
+              
+              <div className="pt-2">
+                <a 
+                  href="https://www.linkedin.com/in/marcus-ramalho-8a440545/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#0077B5] transition-colors font-medium"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span>Conectar no LinkedIn</span>
+                </a>
               </div>
             </div>
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-muted border antialiased shadow-xl">

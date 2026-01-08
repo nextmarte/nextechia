@@ -57,10 +57,10 @@ export function LiveAgent() {
   };
 
   return (
-    <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end">
+    <div className="fixed bottom-6 right-4 sm:right-24 z-50 flex flex-col items-end max-w-[calc(100vw-2rem)]">
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-[350px] sm:w-[400px] h-[500px] bg-background border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+        <div className="mb-4 w-[calc(100vw-2rem)] sm:w-[400px] h-[500px] max-h-[60vh] sm:max-h-[70vh] bg-background border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
           {/* Header */}
           <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
             <div className="flex items-center gap-2">

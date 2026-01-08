@@ -14,9 +14,9 @@ const navigation = [
   { name: 'Sites Express', href: '/sites-express' },
   { name: 'Agentes IA', href: '/agentes-ia' },
   { name: 'Sistemas', href: '/sistemas-web' },
-  { name: 'Fundador', href: '/fundador' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
+  { name: 'Fundador', href: '/fundador' },
 ];
 
 export function Header() {
