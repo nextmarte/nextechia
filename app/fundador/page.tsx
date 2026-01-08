@@ -26,7 +26,7 @@ export default function FundadorPage() {
               <div className="flex flex-wrap gap-4 pt-4">
                 <div className="flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm font-medium">
                   <Cpu className="h-4 w-4 text-primary" />
-                  Senior Python Developer
+                  Software Developer
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm font-medium">
                   <Globe className="h-4 w-4 text-primary" />
@@ -71,9 +71,8 @@ export default function FundadorPage() {
                 arquitetura de sistemas complexos e a análise profunda de grandes volumes de dados.
               </p>
               <p>
-                Atualmente lidera o desenvolvimento de soluções end-to-end utilizando ecossistemas modernos como Python (Django, Streamlit) 
-                e R (Shiny) em centros de excelência acadêmica e profissional. A Nextech nasceu como a síntese dessa experiência: 
-                levar para o mercado a mesma robustez e eficiência aplicadas em ambientes de alta exigência técnica.
+                Atualmente lidera o desenvolvimento de soluções corporativas e plataformas de dados em centros de excelência acadêmica e profissional. A NexTechIA nasceu como a síntese dessa experiência: 
+                levar para o mercado a mesma robustez e eficiência aplicadas em ambientes de alta exigência.
               </p>
             </div>
           </div>
@@ -93,8 +92,7 @@ export default function FundadorPage() {
                   "Engenharia de dados e processos de ETL complexos",
                   "Criação de dashboards estratégicos e plataformas de dados",
                   "Automação inteligente de processos e fluxos de trabalho",
-                  "Integração sistêmica entre dados, processos e IA",
-                  "Stack: Next.js, Django, Python e R"
+                  "Integração sistêmica entre dados, processos e IA"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 items-start">
                     <CheckCircle2 className="h-5 w-5 text-primary mt-1 shrink-0" />

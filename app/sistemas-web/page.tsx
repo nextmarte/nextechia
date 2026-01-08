@@ -31,14 +31,14 @@ export default function SistemasWebPage() {
             <div className="flex gap-4">
               <div className="h-10 w-10 text-primary shrink-0"><Server /></div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Poder do Django</h3>
-                <p className="text-muted-foreground">Framework robusto usado por gigantes como Instagram e NASA, garantindo segurança e escalabilidade desde o primeiro dia.</p>
+                <h3 className="text-xl font-bold mb-2">Back-end Robusto</h3>
+                <p className="text-muted-foreground">Frameworks de alta performance que garantem segurança e escalabilidade desde o primeiro dia de operação.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="h-10 w-10 text-primary shrink-0"><Layout /></div>
               <div>
-                <h3 className="text-xl font-bold mb-2">Interfaces com Next.js</h3>
+                <h3 className="text-xl font-bold mb-2">Interfaces Modernas</h3>
                 <p className="text-muted-foreground">Painéis administrativos rápidos, intuitivos e totalmente responsivos para que você controle tudo de qualquer lugar.</p>
               </div>
             </div>
