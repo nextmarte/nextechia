@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "nextechia",
+      "name": "nextech",
       "dependencies": {
         "clsx": "^2.1.1",
         "lucide-react": "^0.562.0",

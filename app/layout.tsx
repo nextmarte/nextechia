@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NexTechIA | Desenvolvimento de Sites, Sistemas e Automações",
+  title: "Nextech | Desenvolvimento de Sites, Sistemas e Automações",
   description: "Desenvolvimento de sites profissionais com Next.js, sistemas web com Django e automações inteligentes com IA. Soluções robustas para o mundo real.",
   keywords: ["Next.js", "Django", "Desenvolvimento Web", "IA", "Automação", "Chatbots WhatsApp", "Sistemas Web"],
-  authors: [{ name: "NexTechIA" }],
+  authors: [{ name: "Nextech" }],
 };
 
 export default function RootLayout({

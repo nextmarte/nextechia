@@ -46,7 +46,7 @@ export default function ChatbotsPage() {
                <div className="space-y-3 max-w-[90%]">
                  <div className="bg-background border rounded-lg p-2 text-[10px] text-muted-foreground">Olá, como posso ajudar?</div>
                  <div className="bg-primary text-primary-foreground rounded-lg p-3 text-sm shadow-lg border border-primary/20">
-                   Olá! Sou o assistente da NexTechIA. Gostaria de um orçamento?
+                   Olá! Sou o assistente da Nextech. Gostaria de um orçamento?
                  </div>
                </div>
             </div>

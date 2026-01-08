@@ -9,7 +9,7 @@ export default function SobrePage() {
       <Container>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground">A NexTechIA</h1>
+            <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground">A Nextech</h1>
             <p className="text-xl text-muted-foreground">
               Tecnologia de ponta com foco em resolver problemas do mundo real.
             </p>
@@ -18,7 +18,7 @@ export default function SobrePage() {
           <div className="relative h-[400px] w-full mb-16 rounded-2xl overflow-hidden border shadow-xl bg-muted">
             <Image
               src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
-              alt="Colaboração e tecnologia na NexTechIA"
+              alt="Colaboração e tecnologia na Nextech"
               fill
               priority
               className="object-cover"
@@ -27,7 +27,7 @@ export default function SobrePage() {
 
           <div className="prose dark:prose-invert max-w-none text-muted-foreground space-y-6 text-lg">
             <p>
-              Nascemos da necessidade de empresas que buscam mais do que apenas um site bonito. Na NexTechIA, acreditamos que a tecnologia deve ser uma alavanca de crescimento e eficiência, não uma fonte de frustração.
+              Nascemos da necessidade de empresas que buscam mais do que apenas um site bonito. Na Nextech, acreditamos que a tecnologia deve ser uma alavanca de crescimento e eficiência, não uma fonte de frustração.
             </p>
             <p>
               Especializados na stack moderna de <strong>Next.js</strong> e <strong>Django</strong>, unimos a velocidade e interatividade do front-end com a robustez e segurança de back-ends empresariais. Nossa abordagem é sempre técnica, pragmática e focada em resultados.

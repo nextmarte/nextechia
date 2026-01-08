@@ -14,6 +14,7 @@ const navigation = [
   { name: 'Sites Express', href: '/sites-express' },
   { name: 'Agentes IA', href: '/agentes-ia' },
   { name: 'Sistemas', href: '/sistemas-web' },
+  { name: 'Fundador', href: '/fundador' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
 ];
@@ -29,7 +30,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-xl font-bold tracking-tight text-foreground">
-                <span className="text-primary">NexTech</span>IA
+                <span className="text-primary">Nextech</span>IA
               </span>
             </Link>
           </div>

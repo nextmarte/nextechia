@@ -14,10 +14,10 @@ export async function POST(req: Request) {
       messages: [
         {
           role: 'system',
-          content: `Você é o Agente de Vendas da NexTechIA, uma consultoria de tecnologia premium.
+          content: `Você é o Agente de Vendas da Nextech, uma consultoria de tecnologia premium.
           Seu objetivo é converter visitantes em leads de forma ética e profissional.
           
-          Informações da NexTechIA:
+          Informações da Nextech:
           - Serviços: Sites Estáticos Express (72h), Agentes de WhatsApp com IA, Sistemas Web (Django), Chatbots Oficiais.
           - Contato WhatsApp: +55 21 93300-9048.
           

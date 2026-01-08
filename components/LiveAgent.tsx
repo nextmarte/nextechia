@@ -17,7 +17,7 @@ export function LiveAgent() {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'assistant', 
-      content: 'Olá! 👋 Seja bem-vindo à **NexTechIA**. \n\nSou seu assistente virtual e estou aqui para te ajudar a tirar sua ideia do papel. \n\nQual o objetivo do seu projeto hoje?' 
+      content: 'Olá! 👋 Seja bem-vindo à **Nextech**. \n\nSou seu assistente virtual e estou aqui para te ajudar a tirar sua ideia do papel. \n\nQual o objetivo do seu projeto hoje?' 
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +65,7 @@ export function LiveAgent() {
           <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5" />
-              <span className="font-bold">NexTechIA Agent</span>
+              <span className="font-bold">Nextech Agent</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:opacity-80">
               <X className="h-5 w-5" />

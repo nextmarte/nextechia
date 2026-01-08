@@ -20,7 +20,7 @@ export default function ContatoPage() {
           <div className="relative h-[250px] lg:h-[300px] w-full rounded-2xl overflow-hidden shadow-xl border bg-muted">
             <Image 
               src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-              alt="Atendimento e Suporte NexTechIA"
+              alt="Atendimento e Suporte Nextech"
               fill
               className="object-cover"
             />

@@ -21,7 +21,7 @@ export default function AgentesIAPage() {
             <div className="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/50 to-transparent">
               <div className="flex items-center gap-3 text-white">
                 <Brain className="h-6 w-6 animate-pulse" />
-                <span className="font-semibold tracking-wide">NexTech-AI Gen</span>
+                <span className="font-semibold tracking-wide">Nextech-AI Gen</span>
               </div>
             </div>
           </div>
