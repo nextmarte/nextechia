@@ -1,65 +1,166 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import { Container } from '@/components/Container';
+import { Button } from '@/components/Button';
+import { ServiceCard } from '@/components/ServiceCard';
+import { 
+  Globe, 
+  MessageSquare, 
+  Layout, 
+  Settings, 
+  ShieldCheck, 
+  Zap, 
+  BarChart, 
+} from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <>
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <Container>
+          <div className="flex flex-col items-center text-center space-y-8">
+            <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-muted/50 backdrop-blur">
+              <span className="text-primary mr-2">Novo:</span> Automações inteligentes com IA
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground max-w-4xl font-sans">
+              Sites, sistemas e automações inteligentes para empresas que precisam funcionar melhor.
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+              Desenvolvemos soluções simples, robustas e sob medida usando Next.js, Django e automação inteligente.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="https://wa.me/5521933009048" target="_blank">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Falar no WhatsApp
+                </Button>
+              </Link>
+              <Link href="/servicos">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  Ver Serviços
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-muted/30">
+        <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl mb-4 font-sans">Serviços Principais</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Soluções tecnológicas focadas em resultados reais e eficiência operacional.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ServiceCard
+              title="Sites Profissionais"
+              description="Desenvolvimento com Next.js para máxima performance, SEO e experiência do usuário impecável."
+              href="/servicos"
+              icon={Globe}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <ServiceCard
+              title="Chatbots para WhatsApp"
+              description="Automações inteligentes para atendimento e vendas que funcionam 24/7 sem interrupções."
+              href="/chatbots-whatsapp"
+              icon={MessageSquare}
+            />
+            <ServiceCard
+              title="Sistemas Web sob Medida"
+              description="Backend robusto em Django com interfaces modernas para gerenciar seu negócio com segurança."
+              href="/sistemas-web"
+              icon={Layout}
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* How it Works Section */}
+      <section className="py-20">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl mb-6 font-sans">Como Funciona</h2>
+              <p className="text-muted-foreground mb-10">
+                Nosso processo é direto e focado na entrega de valor contínuo para o seu negócio.
+              </p>
+              <div className="space-y-8">
+                {[
+                  { step: '01', title: 'Diagnóstico', desc: 'Analisamos seus processos e identificamos gargalos que podem ser resolvidos com tecnologia.' },
+                  { step: '02', title: 'Planejamento', desc: 'Desenhamos a arquitetura ideal (Next.js/Django) focada na sua necessidade específica.' },
+                  { step: '03', title: 'Desenvolvimento', desc: 'Codificamos a solução com foco em qualidade, segurança e escalabilidade.' },
+                  { step: '04', title: 'Suporte e Evolução', desc: 'Acompanhamos o pós-lançamento garantindo que tudo funcione perfeitamente.' },
+                ].map((item) => (
+                  <div key={item.step} className="flex gap-4">
+                    <div className="flex-shrink-0 text-2xl font-bold text-primary/40">{item.step}</div>
+                    <div>
+                      <h3 className="text-lg font-bold">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative aspect-square md:aspect-video lg:aspect-square bg-muted rounded-xl border shadow-inner flex items-center justify-center p-8 overflow-hidden">
+               <div className="grid grid-cols-2 gap-4 w-full h-full opacity-20">
+                 <div className="bg-primary/20 rounded-lg animate-pulse" />
+                 <div className="bg-primary/10 rounded-lg" />
+                 <div className="bg-primary/5 rounded-lg" />
+                 <div className="bg-primary/20 rounded-lg animate-pulse" />
+               </div>
+               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground font-mono text-xs uppercase tracking-widest">
+                 [ NexTechIA Visual Asset ]
+               </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Differentials Section */}
+      <section className="py-20 bg-muted/50">
+        <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl mb-4 font-sans">Por que escolher a NexTechIA?</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+             {[
+               { icon: Zap, title: 'Performance', desc: 'Sites extremamente rápidos com Next.js.' },
+               { icon: ShieldCheck, title: 'Segurança', desc: 'Sistemas robustos e protegidos com Django.' },
+               { icon: Settings, title: 'Automação', desc: 'Processos repetitivos executados por IA.' },
+               { icon: BarChart, title: 'Resultados', desc: 'Tecnologia que gera conversão e lucro.' },
+             ].map((item, idx) => (
+               <div key={idx} className="flex flex-col items-center">
+                 <div className="mb-4 text-primary">
+                    <item.icon className="h-10 w-10" />
+                 </div>
+                 <h3 className="font-bold mb-2">{item.title}</h3>
+                 <p className="text-sm text-muted-foreground">{item.desc}</p>
+               </div>
+             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-20 border-t">
+        <Container>
+          <div className="bg-primary text-primary-foreground rounded-2xl p-8 md:p-16 text-center space-y-8 overflow-hidden relative">
+            <div className="relative z-10 space-y-6">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Sua empresa está pronta para o próximo nível?</h2>
+              <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto">
+                Desenvolvemos a tecnologia que resolve seus problemas reais. Vamos conversar sobre o seu projeto?
+              </p>
+              <Link href="https://wa.me/5521933009048" target="_blank" className="inline-block">
+                <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-zinc-100">
+                  Solicitar Orçamento no WhatsApp
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }
