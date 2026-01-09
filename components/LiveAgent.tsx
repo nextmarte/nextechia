@@ -12,7 +12,7 @@ interface Message {
 }
 
 export function LiveAgent() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     { 
@@ -141,11 +141,18 @@ export function LiveAgent() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95",
+          "h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 relative",
           isOpen ? "bg-muted text-foreground" : "bg-primary text-primary-foreground"
         )}
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
+        
+        {/* Badge de notificação */}
+        {!isOpen && (
+          <div className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-pulse">
+            ●
+          </div>
+        )}
       </button>
     </div>
   );

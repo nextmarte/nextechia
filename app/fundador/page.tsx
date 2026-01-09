@@ -24,7 +24,7 @@ export default function FundadorPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                Fundador da Nextech
+                Marcus Ramalho
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Tecnologia aplicada com foco em resultado, simplicidade e execução no mundo real.
@@ -77,7 +77,7 @@ export default function FundadorPage() {
                 arquitetura de sistemas complexos e a análise profunda de grandes volumes de dados.
               </p>
               <p>
-                Atualmente lidera o desenvolvimento de soluções corporativas e plataformas de dados em centros de excelência acadêmica e profissional. A NexTechIA nasceu como a síntese dessa experiência: 
+                Atualmente lidera o desenvolvimento de soluções corporativas e plataformas de dados em centros de excelência acadêmica e profissional. A Nextech nasceu como a síntese dessa experiência: 
                 levar para o mercado a mesma robustez e eficiência aplicadas em ambientes de alta exigência.
               </p>
             </div>

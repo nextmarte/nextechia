@@ -30,7 +30,7 @@ export function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-xl font-bold tracking-tight text-foreground">
-                <span className="text-primary">Nextech</span>IA
+                <span className="text-primary">Nextech</span>
               </span>
             </Link>
           </div>
