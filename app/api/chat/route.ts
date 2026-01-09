@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     if (finalEmail) {
       const score = calculateLeadScore(
         messages.length,
-        !!finalName || messages.some(m => m.content?.toLowerCase().includes('objetivo')),
+        !!finalName || messages.some((m: { content?: string }) => m.content?.toLowerCase().includes('objetivo')),
         !!finalPhone,
         0 // sessionDurationMinutes seria calculado no front-end
       )
