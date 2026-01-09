@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { ServiceCard } from '@/components/ServiceCard';
+import { TypeWriter } from '@/components/TypeWriter';
 import { cn } from '@/lib/utils';
 import { 
   Globe, 
@@ -80,7 +81,11 @@ export default function Home() {
               <span className="text-primary mr-2 font-bold animate-pulse">Novo:</span> Automações inteligentes com IA
             </div>
             <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight text-foreground max-w-5xl font-sans leading-[1.1]">
-              Desenvolvemos a <span className="text-primary bg-clip-text">tecnologia que seu negócio precisa</span>.
+              <TypeWriter 
+                text="Desenvolvemos a tecnologia que seu negócio precisa"
+                className="text-foreground"
+                speed={50}
+              />
             </h1>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link href="https://wa.me/5521933009048" target="_blank">
