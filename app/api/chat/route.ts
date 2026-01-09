@@ -11,6 +11,7 @@ interface CaptureLeadInput {
   email: string
   phone: string
   objective: string
+  organization?: string
 }
 
 // Schema de ferramenta para captura estruturada de lead
@@ -18,7 +19,7 @@ const LEAD_CAPTURE_TOOL = {
   type: 'function',
   function: {
     name: 'capture_lead',
-    description: 'Captura dados estruturados do cliente quando nome, email, telefone e objetivo estão disponíveis',
+    description: 'Captura dados estruturados do cliente quando nome, telefone, email, objetivo e organização estão disponíveis',
     parameters: {
       type: 'object',
       properties: {
@@ -37,6 +38,10 @@ const LEAD_CAPTURE_TOOL = {
         objective: {
           type: 'string',
           description: 'Objetivo ou descrição do projeto',
+        },
+        organization: {
+          type: 'string',
+          description: 'Organização/empresa do cliente (opcional)',
         },
       },
       required: ['name', 'email', 'phone', 'objective'],
@@ -74,14 +79,19 @@ export async function POST(req: Request) {
           - Contato WhatsApp: +55 21 93300-9048.
           
           Protocolo de Captura de Leads:
-          1. Converse naturalmente com o cliente, coletando: nome, email, telefone (formato: (DD) 9XXXX-XXXX ou similar) e objetivo do projeto.
-          2. Quando tiver TODOS os 4 campos (nome, email, telefone e objetivo), chame a ferramenta capture_lead para registrar os dados.
-          3. Após a chamada da ferramenta, o sistema gerará um link de WhatsApp personalizado e o cliente poderá prosseguir.
+          1. COMEÇAR: Peça APENAS o NOME completo do cliente na primeira pergunta.
+          2. CONVERSAR: Após obter o nome, converse naturalmente sobre o objetivo/projeto do cliente. Faça perguntas relevantes para entender melhor a necessidade.
+          3. ENCERRAR: Quando o cliente demonstrar interesse suficiente, diga que precisa de alguns dados de contato para prosseguir.
+          4. COLETAR DADOS FINAIS: Peça TELEFONE, EMAIL e ORGANIZAÇÃO (pode ser "não tenho" se freelancer).
+          5. REGISTRAR: Quando tiver os 5 dados (nome, telefone, email, objetivo, organização), chame a ferramenta capture_lead.
           
-          Orientações:
+          Orientações importantes:
+          - A conversa deve ser natural e focada no objetivo do cliente, não em coletar dados.
+          - Apenas o NOME é coletado no início.
+          - Telefone, email e organização são coletados APENAS ao final, antes de gerar o link WhatsApp.
           - Seja cordial, profissional e empático.
-          - Se o cliente oferecer dados parciais, peça educadamente pelos faltantes.
-          - Responda de forma concisa (máximo 3 parágrafos).
+          - Reconheça os dados do cliente à medida que são fornecidos (ex: "Perfeito! Então seu telefone é...").
+          - Responda de forma concisa (máximo 2-3 parágrafos).
           - NÃO gere link wa.me manualmente; deixe a ferramenta e o sistema fazer isso.`,
         },
         ...messages,
@@ -122,6 +132,7 @@ export async function POST(req: Request) {
             source: 'chat',
             score,
             status: score >= 60 ? 'qualified' : 'new',
+            company: leadData.organization || undefined,
           })
 
           if (lead) {
@@ -134,7 +145,7 @@ export async function POST(req: Request) {
             })
 
             // Construir WhatsApp message e link
-            const whatsappText = `Olá, sou ${leadData.name}. Quero falar sobre ${leadData.objective}. Meu email: ${leadData.email}. Telefone: ${leadData.phone}.`
+            const whatsappText = `Olá, sou ${leadData.name}. Quero falar sobre ${leadData.objective}. Meu email: ${leadData.email}. Telefone: ${leadData.phone}${leadData.organization ? `. Organização: ${leadData.organization}` : ''}.`
             whatsappLink = `https://wa.me/5521933009048?text=${encodeURIComponent(whatsappText)}`
 
             // Vincular histórico da sessão ao lead
