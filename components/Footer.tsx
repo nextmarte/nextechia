@@ -14,7 +14,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground max-w-xs">
-              Desenvolvemos a tecnologia que seu negócio precisa para vender mais e trabalhar menos.
+              Desenvolvemos a tecnologia que seu negócio precisa.
             </p>
           </div>
           <div>
