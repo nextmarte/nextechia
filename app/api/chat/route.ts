@@ -6,26 +6,43 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-// Padrão para detectar quando o lead está sendo capturado
-const LEAD_CAPTURE_PATTERNS = {
-  name: /(?:meu nome é|me chamo|sou|chamam-me)\s+([a-záéíóúâêãõ\s]+)/i,
-  email: /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/,
-  phone: /(?:\+55\s?)?(?:\(?\d{2}\)?[\s-]?)?\d{4,5}[\s-]?\d{4}/,
+interface CaptureLeadInput {
+  name: string
+  email: string
+  phone: string
+  objective: string
 }
 
-function extractLeadData(messages: any[]) {
-  const conversationText = messages.map(m => m.content).join(' ')
-  
-  const nameMatch = conversationText.match(LEAD_CAPTURE_PATTERNS.name)
-  const emailMatch = conversationText.match(LEAD_CAPTURE_PATTERNS.email)
-  const phoneMatch = conversationText.match(LEAD_CAPTURE_PATTERNS.phone)
-  
-  return {
-    name: nameMatch ? nameMatch[1].trim() : null,
-    email: emailMatch ? emailMatch[1] : null,
-    phone: phoneMatch ? phoneMatch[0] : null,
-  }
-}
+// Schema de ferramenta para captura estruturada de lead
+const LEAD_CAPTURE_TOOL = {
+  type: 'function',
+  function: {
+    name: 'capture_lead',
+    description: 'Captura dados estruturados do cliente quando nome, email, telefone e objetivo estão disponíveis',
+    parameters: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          description: 'Nome completo do cliente',
+        },
+        email: {
+          type: 'string',
+          description: 'Email do cliente',
+        },
+        phone: {
+          type: 'string',
+          description: 'Telefone do cliente (formato BR: DDD + 9 dígitos)',
+        },
+        objective: {
+          type: 'string',
+          description: 'Objetivo ou descrição do projeto',
+        },
+      },
+      required: ['name', 'email', 'phone', 'objective'],
+    },
+  },
+} as const
 
 export async function POST(req: Request) {
   try {
@@ -44,6 +61,8 @@ export async function POST(req: Request) {
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
+      tools: [LEAD_CAPTURE_TOOL],
+      tool_choice: 'auto',
       messages: [
         {
           role: 'system',
@@ -54,17 +73,16 @@ export async function POST(req: Request) {
           - Serviços: Sites Estáticos Express (72h), Agentes de WhatsApp com IA, Sistemas Web Corporativos, Chatbots Oficiais.
           - Contato WhatsApp: +55 21 93300-9048.
           
-          Protocolo de Fechamento:
-          1. Quando o cliente demonstrar interesse, peça o nome e o objetivo do projeto.
-          2. Após receber essas informações, gere uma saudação final e um link de WhatsApp personalizado.
-          3. IMPORTANTE: O link deve ser gerado pelo sistema wa.me com o parâmetro text contendo os dados coletados.
-          Exemplo: https://wa.me/5521933009048?text=Ola%20Marcus,%20meu%20nome%20e%20[Nome].%20Quero%20falar%20sobre%20[Projeto].
-          4. O link deve aparecer como um link clicável (markdown) no final da resposta.
+          Protocolo de Captura de Leads:
+          1. Converse naturalmente com o cliente, coletando: nome, email, telefone (formato: (DD) 9XXXX-XXXX ou similar) e objetivo do projeto.
+          2. Quando tiver TODOS os 4 campos (nome, email, telefone e objetivo), chame a ferramenta capture_lead para registrar os dados.
+          3. Após a chamada da ferramenta, o sistema gerará um link de WhatsApp personalizado e o cliente poderá prosseguir.
           
           Orientações:
-          - Seja cordial e técnico.
-          - Se o cliente não fornecer os dados espontaneamente, peça educadamente para prosseguir com o orçamento.
-          - Responda de forma concisa (máximo 3 parágrafos).`,
+          - Seja cordial, profissional e empático.
+          - Se o cliente oferecer dados parciais, peça educadamente pelos faltantes.
+          - Responda de forma concisa (máximo 3 parágrafos).
+          - NÃO gere link wa.me manualmente; deixe a ferramenta e o sistema fazer isso.`,
         },
         ...messages,
       ],
@@ -72,51 +90,68 @@ export async function POST(req: Request) {
     })
 
     const assistantContent = response.choices[0].message.content || ''
+    const assistantMessage = response.choices[0].message
 
     // Salvar resposta do assistente
     await saveChatMessage(sessionId, 'assistant', assistantContent)
 
-    // Extrair dados do lead da conversa
-    const leadData = extractLeadData(messages)
-    const finalEmail = (providedEmail || leadData.email)?.trim() || null
-    const finalPhone = (providedPhone || leadData.phone)?.trim() || null
-    const finalName = (providedName || leadData.name)?.trim() || null
+    let whatsappLink: string | null = null
+    let leadId: string | null = null
 
-    // Se temos dados de lead, salvar no banco
-    if (finalEmail) {
-      const score = calculateLeadScore(
-        messages.length,
-        !!finalName || messages.some((m: { content?: string }) => m.content?.toLowerCase().includes('objetivo')),
-        !!finalPhone,
-        0 // sessionDurationMinutes seria calculado no front-end
-      )
-
-      const lead = await upsertLead(finalEmail, {
-        name: finalName || 'Lead sem nome',
-        phone: finalPhone || undefined,
-        objective: messages[messages.length - 1]?.content || null,
-        source: 'chat',
-        score,
-        status: score >= 60 ? 'qualified' : 'new',
-      })
-
-      if (lead) {
-        await logInteraction(lead.id, 'message', {
-          messageCount: messages.length,
-          hasWALink: assistantContent.includes('wa.me'),
-        })
-        // Vincular histórico desta sessão ao lead
-        // Opcional: atualizar mensagens antigas desta sessão com lead_id
+    // Verificar se houve chamada de ferramenta (tool_call)
+    if (assistantMessage.tool_calls && assistantMessage.tool_calls.length > 0) {
+      const toolCall = assistantMessage.tool_calls[0] as any
+      
+      if (toolCall.function?.name === 'capture_lead') {
         try {
-          const { createServerSupabaseClient } = await import('@/lib/supabaseClient')
-          const supabase = createServerSupabaseClient()
-          await supabase
-            .from('chat_history')
-            .update({ lead_id: lead.id })
-            .eq('session_id', sessionId)
-            .is('lead_id', null)
+          const leadData: CaptureLeadInput = JSON.parse(toolCall.function.arguments)
+          
+          // Calcular score baseado na coleta de dados
+          const score = calculateLeadScore(
+            messages.length,
+            !!leadData.objective,
+            !!leadData.phone,
+            0
+          )
+
+          // Salvar lead no banco
+          const lead = await upsertLead(leadData.email, {
+            name: leadData.name,
+            phone: leadData.phone,
+            objective: leadData.objective,
+            source: 'chat',
+            score,
+            status: score >= 60 ? 'qualified' : 'new',
+          })
+
+          if (lead) {
+            leadId = lead.id
+            
+            // Registrar interação
+            await logInteraction(lead.id, 'message', {
+              messageCount: messages.length,
+              dataCollected: true,
+            })
+
+            // Construir WhatsApp message e link
+            const whatsappText = `Olá, sou ${leadData.name}. Quero falar sobre ${leadData.objective}. Meu email: ${leadData.email}. Telefone: ${leadData.phone}.`
+            whatsappLink = `https://wa.me/5521933009048?text=${encodeURIComponent(whatsappText)}`
+
+            // Vincular histórico da sessão ao lead
+            try {
+              const { createServerSupabaseClient } = await import('@/lib/supabaseClient')
+              const supabase = createServerSupabaseClient()
+              await supabase
+                .from('chat_history')
+                .update({ lead_id: lead.id })
+                .eq('session_id', sessionId)
+                .is('lead_id', null)
+            } catch (e) {
+              console.warn('Falha ao vincular sessão ao lead:', e)
+            }
+          }
         } catch (e) {
-          console.warn('Falha ao vincular sessão ao lead:', e)
+          console.error('Erro ao processar tool_call:', e)
         }
       }
     }
@@ -124,7 +159,8 @@ export async function POST(req: Request) {
     return NextResponse.json({
       role: 'assistant',
       content: assistantContent,
-      leadLinked: !!finalEmail,
+      whatsappLink,
+      leadId,
     })
   } catch (error) {
     console.error('Chat API Error:', error)
