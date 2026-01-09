@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
@@ -5,6 +6,17 @@ import { Button } from '@/components/Button';
 import { ServiceCard } from '@/components/ServiceCard';
 import { Globe, MessageSquare, Layout, Smartphone, Search, Database, Zap, Bot } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Serviços de Tecnologia | Nextech",
+  description: "Conheça nossos serviços de desenvolvimento web, sistemas inteligentes e automações com IA. Soluções personalizadas para sua empresa.",
+  openGraph: {
+    title: "Serviços de Tecnologia | Nextech",
+    description: "Conheça nossos serviços de desenvolvimento web, sistemas inteligentes e automações com IA.",
+    url: "https://nextech.net.br/servicos",
+    type: "website",
+  },
+};
 
 export default function ServicesPage() {
   return (

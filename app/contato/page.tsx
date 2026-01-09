@@ -1,12 +1,23 @@
-'use client';
-
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { Mail, MessageCircle, MapPin } from 'lucide-react';
 
+export const metadata: Metadata = {
+  title: "Contato | Nextech",
+  description: "Entre em contato conosco. Estamos prontos para conversar sobre suas necessidades e apresentar nossas soluções.",
+  openGraph: {
+    title: "Contato | Nextech",
+    description: "Entre em contato com a Nextech para conhecer nossas soluções.",
+    url: "https://nextech.net.br/contato",
+    type: "website",
+  },
+};
+
 export default function ContatoPage() {
+  'use client';
   return (
     <div className="py-20">
       <Container>

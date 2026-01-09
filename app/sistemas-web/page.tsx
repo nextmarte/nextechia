@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { Database, Shield, Server, Layout, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Sistemas Web | Nextech",
+  description: "Desenvolvimento de sistemas web personalizados e robustos. Soluções escaláveis para todos os tipos de negócios.",
+  openGraph: {
+    title: "Sistemas Web | Nextech",
+    description: "Desenvolvimento de sistemas web personalizados e robustos para seu negócio.",
+    url: "https://nextech.net.br/sistemas-web",
+    type: "website",
+  },
+};
 
 export default function SistemasWebPage() {
   return (

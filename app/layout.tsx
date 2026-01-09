@@ -17,11 +17,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseURL = "https://nextech.net.br";
+
 export const metadata: Metadata = {
   title: "Nextech | Desenvolvimento de Sites, Sistemas e Automações",
   description: "Desenvolvimento de sites profissionais, sistemas web e automações inteligentes com IA. Soluções robustas para o mundo real.",
   keywords: ["Desenvolvimento Web", "IA", "Automação", "Chatbots WhatsApp", "Sistemas Web"],
   authors: [{ name: "Nextech" }],
+  metadataBase: new URL(baseURL),
+  alternates: {
+    canonical: baseURL,
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: baseURL,
+    siteName: "Nextech",
+    title: "Nextech | Desenvolvimento de Sites, Sistemas e Automações",
+    description: "Desenvolvimento de sites profissionais, sistemas web e automações inteligentes com IA. Soluções robustas para o mundo real.",
+    images: [
+      {
+        url: `${baseURL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Nextech - Desenvolvimento Web e IA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nextech | Desenvolvimento de Sites, Sistemas e Automações",
+    description: "Desenvolvimento de sites profissionais, sistemas web e automações inteligentes com IA.",
+    images: [`${baseURL}/og-image.jpg`],
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

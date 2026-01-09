@@ -7,6 +7,12 @@ import { CheckCircle2, Award, BookOpen, Cpu, Globe, Scale, Linkedin } from "luci
 export const metadata: Metadata = {
   title: "Marcus Ramalho | Fundador da Nextech",
   description: "Conheça a trajetória de Marcus Ramalho, fundador da Nextech, desenvolvedor de sistemas e cientista de dados focado em soluções reais de IA e Governança.",
+  openGraph: {
+    title: "Marcus Ramalho | Fundador da Nextech",
+    description: "Conheça a trajetória de Marcus Ramalho, fundador da Nextech.",
+    url: "https://nextech.net.br/fundador",
+    type: "website",
+  },
 };
 
 export default function FundadorPage() {

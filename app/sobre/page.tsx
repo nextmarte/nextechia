@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Target, Eye, ShieldCheck, Code2, Server, Cpu } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: "Sobre Nextech | História e Missão",
+  description: "Conheça a história da Nextech. Somos uma empresa especializada em desenvolvimento web, sistemas inteligentes e automações com IA.",
+  openGraph: {
+    title: "Sobre Nextech | História e Missão",
+    description: "Conheça a história e missão da Nextech.",
+    url: "https://nextech.net.br/sobre",
+    type: "website",
+  },
+};
 
 export default function SobrePage() {
   return (

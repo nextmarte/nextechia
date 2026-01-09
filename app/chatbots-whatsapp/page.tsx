@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { CheckCircle2, MessageSquare, Zap, Clock, Users } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Chatbots WhatsApp | Nextech",
+  description: "Crie chatbots inteligentes para WhatsApp. Automação de atendimento, vendas e suporte em tempo real.",
+  openGraph: {
+    title: "Chatbots WhatsApp | Nextech",
+    description: "Crie chatbots inteligentes para WhatsApp com automação completa.",
+    url: "https://nextech.net.br/chatbots-whatsapp",
+    type: "website",
+  },
+};
 
 export default function ChatbotsPage() {
   return (

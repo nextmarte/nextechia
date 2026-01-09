@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { Bot, MessageSquare, Brain, Sparkles, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Agentes de IA | Nextech",
+  description: "Automação inteligente com agentes de IA. Crie assistentes virtuais que aprendem e se adaptam às necessidades do seu negócio.",
+  openGraph: {
+    title: "Agentes de IA | Nextech",
+    description: "Automação inteligente com agentes de IA para seu negócio.",
+    url: "https://nextech.net.br/agentes-ia",
+    type: "website",
+  },
+};
 
 export default function AgentesIAPage() {
   return (

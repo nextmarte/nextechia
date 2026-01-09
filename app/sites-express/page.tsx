@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import React from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/Button';
 import { Zap, Layout, Bot, CheckCircle2, Globe } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Sites Estáticos Express | Nextech",
+  description: "Crie sites estáticos rápidos e otimizados com nosso serviço Express. Perfeito para portfólios, blogs e apresentação de empresas.",
+  openGraph: {
+    title: "Sites Estáticos Express | Nextech",
+    description: "Crie sites estáticos rápidos e otimizados com nosso serviço Express.",
+    url: "https://nextech.net.br/sites-express",
+    type: "website",
+  },
+};
 
 export default function SitesExpressPage() {
   return (
