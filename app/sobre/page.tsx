@@ -46,6 +46,9 @@ export default function SobrePage() {
                 Nascemos da necessidade de empresas que buscam mais do que apenas um site bonito. Na Nextech, acreditamos que a tecnologia deve ser uma alavanca de crescimento e eficiência, não uma fonte de frustração.
               </p>
               <p>
+                A Nextech foi fundada a partir de uma inquietação compartilhada por três jovens pesquisadores do COPPEAD apaixonados por tecnologia e inovação. Durante o doutorado em Inteligência Artificial e Administração, percebemos que a lacuna entre a pesquisa avançada e as necessidades reais do mercado era significativa. Essa inquietação nos motivou a transformar conhecimento acadêmico em soluções concretas, práticas e impactantes.
+              </p>
+              <p>
                 Unimos a velocidade e interatividade das interfaces modernas com a robustez e segurança de sistemas empresariais. Nossa abordagem é sempre técnica, pragmática e focada em resultados.
               </p>
             </div>

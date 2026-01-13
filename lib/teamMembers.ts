@@ -32,7 +32,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'luiz',
     name: 'Luiz Felipe Barbedo',
-    headline: 'Cientista de Dados | Desenvolvedor Python Sênior | Projeto Lagoa Viva Maricá',
+    headline: 'Data Scientist | Senior Python Developer',
     skills: [
       'Ciência de Dados Aplicada',
       'Python & R',
