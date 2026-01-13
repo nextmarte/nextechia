@@ -7,11 +7,11 @@ import { teamMembers } from '@/lib/teamMembers';
 import { Target, Eye, ShieldCheck, CheckCircle2, Award, BookOpen, Cpu, Globe, Scale, Linkedin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Sobre Nextech | História, Missão e Fundador",
-  description: "Conheça a história da Nextech, nossa missão e Marcus Ramalho, fundador e desenvolvedor de sistemas focado em soluções reais de IA.",
+  title: "Sobre Nextech | História, Missão e Equipe",
+  description: "Conheça a história da Nextech, nossa missão nossa equipe",
   openGraph: {
-    title: "Sobre Nextech | História, Missão e Fundador",
-    description: "Conheça a história da Nextech e Marcus Ramalho, nosso fundador.",
+    title: "Sobre Nextech | História, Missão e Equipe",
+    description: "Conheça a história da Nextech e nossa equipe.",
     url: "https://nextech.net.br/sobre",
     type: "website",
   },
